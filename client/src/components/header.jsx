@@ -2,13 +2,15 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import { GiHealthNormal } from "react-icons/gi";
 
 export default function Header() {
   return (
-    <header className="app-header">
-      <Navbar bg="dark" variant="dark">
+    <header className="header">
+      <Navbar bg="dark" variant="dark" className="">
         <Container>
-          <Navbar.Brand>
+          <Navbar.Brand className="d-flex">
+            <GiHealthNormal alt="brand" className="my-auto me-2" />
             <Link className="nav-link" to="/">
               HealthView
             </Link>

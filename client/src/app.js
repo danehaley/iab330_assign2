@@ -8,6 +8,7 @@ import Header from "./components/header";
 import Home from "../src/routes/home";
 import PatientList from "../src/routes/patientsList";
 import PatientInfo from "../src/routes/patientsInfo";
+import Maintenance from "../src/routes/maintenance";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/patients" element={<PatientList />} />
         <Route path="/patientinfo/:id" element={<PatientInfo />} />
+        <Route path="/maintenance" element={<Maintenance />} />
       </Routes>
     </BrowserRouter>
   );
