@@ -7,7 +7,7 @@ import { GiHealthNormal } from "react-icons/gi";
 export default function Header() {
   return (
     <header className="header">
-      <Navbar bg="dark" variant="dark" className="">
+      <Navbar bg="dark" variant="dark" position="sticky">
         <Container>
           <Navbar.Brand className="d-flex">
             <GiHealthNormal alt="brand" className="my-auto me-2" />
