@@ -9,24 +9,22 @@ import { BsFilter, BsSearch } from "react-icons/bs";
 export default class Maintenance extends React.Component {
   render() {
     return (
-      <div className="maintenance">
-        <Nav className="maintenance-nav nav">
-          <Nav.Item>Rooms</Nav.Item>
-          <Nav.Item
-            as="button"
-            className="nav__icon-button--search icon-button"
-          >
-            <BsSearch />
-          </Nav.Item>
-          <Nav.Item
-            as="button"
-            className="nav__icon-button--filter icon-button"
-          >
-            <BsFilter />
-          </Nav.Item>
-        </Nav>
-        <CreateCardList />
-      </div>
+      <>
+        <Container className="maintenance">
+          <Nav className="maintenance-nav nav px-4 pt-4 pb-2">
+            <Nav.Item>
+              <h3>Rooms</h3>
+            </Nav.Item>
+            <Nav.Link as="button" className="icon-button ms-auto py-0 px-2">
+              <BsSearch size={22} />
+            </Nav.Link>
+            <Nav.Link as="button" className="icon-button py-0 px-2">
+              <BsFilter size={32} />
+            </Nav.Link>
+          </Nav>
+          <CreateCardList />
+        </Container>
+      </>
     );
   }
 }
@@ -34,10 +32,10 @@ export default class Maintenance extends React.Component {
 function CreateCard(props) {
   return (
     <>
-      <Col xs={12} md={6} lg={4} className="p-2">
+      <Col xs={12} md={6} lg={4} className="py-2">
         <Card className="w-100 rounded-4">
           <Card.Body>
-            <Card.Title>{props.name}</Card.Title>
+            <Card.Title>{props.name.toUpperCase()}</Card.Title>
             <Card.Text>{props.availability}</Card.Text>
             <Card.Text>{props.currentPop} Currently</Card.Text>
             <Card.Text>{props.sinceCleanPop} Since Clean</Card.Text>
@@ -67,23 +65,23 @@ function CreateCard(props) {
 function CreateCardList() {
   return (
     <Container className="px-4" style={{ maxWidth: "1320px" }}>
-      <Row>
+      <Row className="gx-3">
         <CreateCard
-          name={"ROOM 1X"}
+          name={"Examination 1X"}
           availability={"Available"}
           currentPop={0}
           sinceCleanPop={4}
           lastCleanDate={"23:59 12/10/2022"}
         />
         <CreateCard
-          name={"ROOM 2Z"}
+          name={"Examination 2Z"}
           availability={"Cleaning"}
           currentPop={1}
           sinceCleanPop={2322}
           lastCleanDate={"23:59 12/01/2022"}
         />
         <CreateCard
-          name={"ROOM 4Y"}
+          name={"Examination 4Y"}
           availability={"In Use"}
           currentPop={9}
           sinceCleanPop={23}
@@ -92,7 +90,7 @@ function CreateCardList() {
       </Row>
       <Row>
         <CreateCard
-          name={"ROOM 9E"}
+          name={"Examination 9E"}
           availability={"Clean Requested"}
           currentPop={2}
           sinceCleanPop={4}
