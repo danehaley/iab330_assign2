@@ -6,17 +6,19 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BsFilter, BsSearch } from "react-icons/bs";
 
+// Components
+import Search from "../components/search";
 export default class Maintenance extends React.Component {
   render() {
     return (
       <>
-        <Container className="maintenance">
-          <Nav className="maintenance-nav nav px-4 pt-4 pb-2">
+        <Container className="maintenance px-2">
+          <Nav className="maintenance-nav nav px-4 pt-5 pb-3">
             <Nav.Item>
               <h3>Rooms</h3>
             </Nav.Item>
-            <Nav.Link as="button" className="icon-button ms-auto py-0 px-2">
-              <BsSearch size={22} />
+            <Nav.Link className="ms-auto">
+              <Search />
             </Nav.Link>
             <Nav.Link as="button" className="icon-button py-0 px-2">
               <BsFilter size={32} />
