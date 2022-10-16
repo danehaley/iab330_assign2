@@ -24,7 +24,7 @@ export default class Maintenance extends React.Component {
         <Container className="maintenance px-2">
           <Nav className="maintenance-nav nav px-4 pt-5 pb-3">
             <Nav.Item>
-              <h3>Rooms</h3>
+              <h3 className="fw-bold">Rooms</h3>
             </Nav.Item>
             <Nav.Link as="button" className="icon-button py-0 px-2 ms-auto">
               <Search />
@@ -46,7 +46,7 @@ function CreateCard(props) {
       <Col xs={12} md={6} lg={4} className="py-2">
         <Card className="w-100 rounded-4">
           <Card.Body>
-            <Card.Title className="fs-3 fw-bold">
+            <Card.Title className="fs-4 fw-bold">
               {props.name.toUpperCase()}
             </Card.Title>
             <Card.Text className="fs-5 d-flex mb-4">
