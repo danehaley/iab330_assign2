@@ -1,5 +1,5 @@
 import { BsSearch, BsXLg } from "react-icons/bs";
-import Collapse from "react-bootstrap/esm/Collapse";
+import Fade from "react-bootstrap/esm/Fade";
 import { useState } from "react";
 
 export default function Search() {
@@ -7,14 +7,16 @@ export default function Search() {
 
   return (
     <div className="d-flex">
-      <Collapse in={open}>
-        <input
-          className="form-control me-2"
-          type="searc collapse"
-          onChange={null}
-          placeholder="Search..."
-        />
-      </Collapse>
+      <Fade in={open} dimension="width">
+        <div>
+          <input
+            className="form-control me-2 "
+            type="search"
+            onChange={null}
+            placeholder="Search..."
+          />
+        </div>
+      </Fade>
       <SearchToggle state={open} setState={setOpen} />
     </div>
   );
@@ -23,9 +25,9 @@ export default function Search() {
 function SearchToggle(props) {
   const switchingIcon = (state) => {
     if (state) {
-      return <BsXLg />;
+      return <BsXLg size={18} />;
     } else if (!state) {
-      return <BsSearch />;
+      return <BsSearch size={18} />;
     }
   };
 
@@ -34,7 +36,7 @@ function SearchToggle(props) {
       as="button"
       type="button"
       onClick={() => props.setState(!props.state)}
-      className="icon-button py-0 px-2"
+      className="icon-button py-0 ps-2 pe-0"
     >
       {switchingIcon(props.state)}
     </button>
