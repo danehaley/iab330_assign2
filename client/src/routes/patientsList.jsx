@@ -1,4 +1,5 @@
 import Header from "../components/header.jsx";
+import PatientList from "../components/patientList";
 
 export default function PatientList() {
   return (
