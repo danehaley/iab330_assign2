@@ -1,12 +1,5 @@
-import React from "react";
-import {
-  BsPeopleFill,
-  BsXCircleFill,
-  BsDashCircle,
-  BsCheckCircle,
-  BsTelephoneOutbound,
-  BsCone,
-} from "react-icons/bs";
+import React, { useState } from "react";
+import { BsPeopleFill } from "react-icons/bs";
 import Nav from "react-bootstrap/Nav";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/esm/Container";
@@ -16,6 +9,8 @@ import Col from "react-bootstrap/Col";
 // Components
 import Search from "../components/search";
 import Filter from "../components/filter";
+import Modal from "../components/modal";
+import Availability from "../components/availability";
 
 export default class Maintenance extends React.Component {
   render() {
@@ -41,9 +36,19 @@ export default class Maintenance extends React.Component {
 }
 
 function CreateCard(props) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => {
+    setShow(false);
+  };
+
+  const handleShow = () => {
+    setShow(true);
+  };
+
   return (
     <>
-      <Col xs={12} md={6} lg={4} className="py-2">
+      <Col xs={12} md={6} lg={4} className="py-2" onClick={handleShow}>
         <Card className="w-100 rounded-4">
           <Card.Body>
             <Card.Title className="fs-4 fw-bold">
@@ -64,7 +69,6 @@ function CreateCard(props) {
                 <strong className="fw-bold">Since Clean</strong>
               </div>
             </Card.Text>
-            <Card.Text></Card.Text>
             <Card.Text className="text-black-50">
               <span className="fw-bold">Last Cleaned</span>:{" "}
               {props.lastCleanDate}
@@ -72,65 +76,19 @@ function CreateCard(props) {
           </Card.Body>
         </Card>
       </Col>
+      <Modal
+        name={props.name.toUpperCase()}
+        info={{
+          state: props.state,
+          currentPop: props.currentPop,
+          sinceCleanPop: props.sinceCleanPop,
+          lastCleanDate: props.lastCleanDate,
+        }}
+        show={show}
+        handleClose={handleClose}
+      />
     </>
   );
-
-  function Availability(state) {
-    switch (state) {
-      case "Available": {
-        return (
-          <>
-            <BsCheckCircle color={"Green"} size={21} className="mx-0 my-auto" />
-            <p className="ms-2 my-auto lh-1 fs-5">Available</p>
-          </>
-        );
-      }
-      case "Cleaning": {
-        return (
-          <>
-            <BsCone color={"Orange"} size={21} className="mx-0 my-auto" />
-            <p className="ms-1 my-auto lh-1 fs-5">Cleaning</p>
-          </>
-        );
-      }
-      case "Clean Requested": {
-        return (
-          <>
-            <BsTelephoneOutbound
-              color={"Orange"}
-              size={21}
-              className="mx-0 my-auto"
-            />
-            <p className="ms-2 my-auto lh-1 fs-5">Clean Requested</p>
-          </>
-        );
-      }
-      case "In Use": {
-        return (
-          <>
-            <BsDashCircle
-              color={"#DC3545"}
-              size={21}
-              className="mx-0 my-auto"
-            />
-            <p className="ms-2 my-auto lh-1 fs-5">In Use</p>
-          </>
-        );
-      }
-      default: {
-        return (
-          <>
-            <BsXCircleFill
-              color={"#DC3545"}
-              size={21}
-              className="mx-0 my-auto"
-            />
-            <p className="ms-2 my-auto lh-1 fs-5">Error</p>
-          </>
-        );
-      }
-    }
-  }
 }
 
 function CreateCardList() {
