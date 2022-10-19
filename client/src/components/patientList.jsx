@@ -21,16 +21,16 @@ export default function PatientList(state) {
           <Table>
             <thread>
               <tr>
-                <th>Name</th>
-                <th>Floor</th>
-                <th>Room</th>
+                <th>{{Name}}</th>
+                <th>{{Floor}}</th>
+                <th>{{Room}}</th>
               </tr>
             </thread>
             <tbody>
               <tr>
-                <td>Mark</td>
-                <td>Floor 1</td>
-                <td>Room 4A</td>
+                <td>{{Name}}</td>
+                <td>{{Floor}}</td>
+                <td>{{Room}}</td>
               </tr>
             </tbody>
           </Table>
