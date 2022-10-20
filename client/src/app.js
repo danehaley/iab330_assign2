@@ -5,10 +5,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/header";
 
 // Routes
-import Home from "../src/routes/home";
-import PatientList from "../src/routes/patientsList";
-import PatientInfo from "../src/routes/patientsInfo";
-import Maintenance from "../src/routes/maintenance";
+import Home from "./routes/home";
+import PatientList from "./routes/patientsList";
+import PatientInfo from "./routes/patientsInfo";
+import Maintenance from "./routes/maintenance";
 
 function App() {
   return (
