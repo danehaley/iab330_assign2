@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 
 // Components
 import Search from "../components/search";
-import Filter from "../components/filter";
+//import Filter from "../components/filter";
 import Modal from "../components/modal";
 import Availability from "../components/availability";
 
@@ -25,7 +25,7 @@ export default class Maintenance extends React.Component {
               <Search />
             </Nav.Link>
             <Nav.Link as="button" className="icon-button py-0 ps-2 pe-0">
-              <Filter />
+              {/*<Filter />*/}
             </Nav.Link>
           </Nav>
           <CreateCardList />
