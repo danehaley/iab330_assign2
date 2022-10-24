@@ -3,7 +3,7 @@ import {
   BsDashCircle,
   BsCheckCircle,
   BsTelephoneOutbound,
-  BsCone,
+  BsCone
 } from "react-icons/bs";
 
 export default function Availability(state) {

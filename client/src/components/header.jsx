@@ -18,7 +18,7 @@ export default function Header() {
           <Nav className="me-auto">
             <Nav.Item>
               <Link className="nav-link" to="/">
-                Home
+                Maintenance
               </Link>
             </Nav.Item>
             <Nav.Item>
@@ -29,11 +29,6 @@ export default function Header() {
             <Nav.Item>
               <Link className="nav-link" to="/bookings">
                 Bookings
-              </Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Link className="nav-link" to="/maintenance">
-                Maintenance
               </Link>
             </Nav.Item>
           </Nav>
