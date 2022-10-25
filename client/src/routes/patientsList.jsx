@@ -92,7 +92,12 @@ function CreateCard(props) {
         info={{
           status: props.status,
           patientID: props.patientID,
+          age: props.age,
+          gender: props.gender,
+          occupation: props.occupation,
+          bloodType: props.bloodType,
           floorRoom: props.floorRoom,
+          bedID: props.bedID
         }}
         show={show}
         handleClose={handleClose}
@@ -109,7 +114,12 @@ function CreateCardList() {
           name={"Daryls Smith"}
           status={"In Progress"}
           patientID={0}
+          age={35}
+          gender={"Male"}
+          occupation={"Farmer"}
+          bloodType={"A"}
           floorRoom={"Level 3 Room 3A"}
+          bedID={"BEDEC4"}
         />
       </Row>
     </Container>
