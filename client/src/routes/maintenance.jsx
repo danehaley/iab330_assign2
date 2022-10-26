@@ -14,6 +14,7 @@ import Availability from "../components/availability";
 
 export default class Maintenance extends React.Component {
   render() {
+    getAllRooms();
     return (
       <>
         <Container className="maintenance px-2">
@@ -34,6 +35,14 @@ export default class Maintenance extends React.Component {
     );
   }
 }
+
+function getAllRooms() {
+  fetch("/rooms").then((res) => {
+    console.log(res);
+  });
+}
+
+function getRoom(id) {}
 
 function CreateCard(props) {
   const [show, setShow] = useState(false);

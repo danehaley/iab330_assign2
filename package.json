@@ -3,16 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start:client-unix": "cd ./client && PORT=9191 npm run start",
-    "start:client": "cd ./client && set PORT=9191 && npm run start",
+    "start:client": "cd ./client && PORT=9191 npm run start",
     "start:server": "cd ./server && node ./bin/www",
-    "start": "concurrently \"npm run start:client\" \" npm run start:server\"",
-    "start-unix": "concurrently \"npm run start:client-unix\" \" npm run start:server\""
+    "start": "concurrently \"npm run start:client\" \" npm run start:server\""
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-promise-router": "^4.1.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1"
