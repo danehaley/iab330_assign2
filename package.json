@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start:client-unix": "cd ./client && PORT=9191 npm run start",
-    "start:client": "cd ./client && set PORT=9191 npm run start",
+    "start:client": "cd ./client && set PORT=9191 && npm run start",
     "start:server": "cd ./server && node ./bin/www",
     "start": "concurrently \"npm run start:client\" \" npm run start:server\"",
     "start-unix": "concurrently \"npm run start:client-unix\" \" npm run start:server\""
