@@ -113,7 +113,7 @@ function CreateCardList() {
         <CreateCard
           name={"Daryls Smith"}
           status={"In Progress"}
-          patientID={0}
+          patientID={"ACE323"}
           age={35}
           gender={"Male"}
           occupation={"Farmer"}
