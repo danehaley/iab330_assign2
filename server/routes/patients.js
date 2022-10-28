@@ -16,7 +16,7 @@ router.get("/patients", (req, res) => {
 router.get("/patient/:id", (req, res) => {
   const query = `
     SELECT *
-    FROM patientinfo;
+    FROM patientinfo2;
     `;
   client.query(query, (err, res) => {
     if (err) {

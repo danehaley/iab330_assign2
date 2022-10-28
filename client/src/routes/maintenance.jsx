@@ -86,7 +86,7 @@ export default function Maintenance() {
           {rooms.map((room) => (
             <CreateCard
               name={"ROOM " + room.roomid.toString()}
-              state={room.state}
+              state={room.status}
               currentPop={room.totaloccupants}
               sinceCleanPop={room.traffic}
               lastCleanDate={"23:59 12/10/2022"}
