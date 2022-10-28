@@ -37,6 +37,16 @@ export default class PatientsList extends React.Component {
   }
 }
 
+// Pull data from routes in docker
+function getAllPatients() {
+  fetch("/rooms").then((res) => {
+    console.log(res);
+  });
+}
+
+// Get ID, room number, gender, bed ID, roomID
+function getPatient(id) {}
+
 function CreateCard(props) {
   const [show, setShow] = useState(false);
 
