@@ -1,4 +1,5 @@
 const client = require("./data/client");
+const cors = require("cors");
 const express = require("express");
 const app = express();
 const port = 3001;
@@ -9,6 +10,12 @@ const patients = require("./routes/patients");
 
 // Connect to database
 client.connect();
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 // Use routes from the following imports
 app.use("/", patients, occupancy);
