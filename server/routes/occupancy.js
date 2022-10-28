@@ -6,17 +6,18 @@ const client = require("../data/client");
 router.get("/rooms", async (req, res) => {
   const query = `
     SELECT *
-    FROM roomoccupancy;
+    FROM roomoccupancy2;
     `;
-  const data = await client.query(query);
-  res.json(data.rows);
+  client.query(query).then((results) => {
+    res.status(200).json(results.rows);
+  });
 });
 
 router.get("/room/:id", async (req, res) => {
   let data = [];
   const query = `
     SELECT *
-    FROM patientinfo;
+    FROM patientinfo2;
     `;
   client
     .query(query)

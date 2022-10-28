@@ -3,12 +3,13 @@ import {
   BsDashCircle,
   BsCheckCircle,
   BsTelephoneOutbound,
-  BsCone
+  BsCone,
 } from "react-icons/bs";
 
 export default function Availability(state) {
+  console.log(state);
   switch (state) {
-    case "Available": {
+    case "clean": {
       return (
         <>
           <BsCheckCircle color={"Green"} size={21} className="mx-0 my-auto" />

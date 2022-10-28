@@ -1,8 +1,18 @@
 const { Client } = require("pg");
+const metadata = require("node-ec2-metadata");
+
+let host = "3.227.215.23";
+
+// Detect if running on EC2
+metadata.isEC2().then(function (onEC2) {
+  if (onEC2) {
+    host = "localhost";
+  }
+});
 
 client = new Client({
   user: "dbuser",
-  host: "ec2-3-227-215-23.compute-1.amazonaws.com",
+  host: host,
   database: "iab330nodered",
   password: "iab3302022",
   port: 5432,
