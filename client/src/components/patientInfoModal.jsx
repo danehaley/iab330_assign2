@@ -27,16 +27,6 @@ export default function Modal(props) {
             {props.info.gender}
           </div>
         </div>
-        <div className="me-4">
-            <strong className="fw-bold">Occupation:</strong>
-            {" "}
-            {props.info.occupation}
-        </div>
-        <div className="me-4">
-            <strong className="fw-bold">Blood Type:</strong>
-            {" "}
-            {props.info.bloodType}
-        </div>
         <div className="d-flex">
           <div className="me-4">
             <strong className="fw-bold">Patient ID:</strong>
@@ -44,9 +34,9 @@ export default function Modal(props) {
             {props.info.patientID}
           </div>
           <div className="me-4">
-            <strong className="fw-bold">Bed ID:</strong>
+            <strong className="fw-bold">Room ID:</strong>
             {" "}
-            {props.info.bedID}
+            {props.info.roomID}
           </div>
         </div>
       </BootstrapModal.Body>

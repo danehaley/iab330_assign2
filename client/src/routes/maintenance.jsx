@@ -18,7 +18,7 @@ export default function Maintenance() {
   const [rooms, setRooms] = useState([]);
 
   async function getData() {
-    const result = await fetch("/rooms");
+    const result = await fetch("http://localhost:3001/rooms");
     const data = await result.json();
     return data;
   }
