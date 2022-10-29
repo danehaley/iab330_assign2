@@ -14,21 +14,14 @@ router.get("/rooms", async (req, res) => {
 });
 
 router.get("/room/:id", async (req, res) => {
-  let data = [];
   const query = `
     SELECT *
-    FROM patientinfo2;
+    FROM rooms
+    WHERE roomID = ${req.params.id};
     `;
-  client
-    .query(query)
-    .then((res) => {
-      for (let row of res.rows) {
-        console.log(row);
-      }
-    })
-    .then(() => {
-      client.end();
-    });
+  client.query(query).then((results) => {
+    res.status(200).json(results.rows);
+  });
 });
 
 module.exports = router;
