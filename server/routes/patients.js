@@ -13,37 +13,4 @@ router.get("/patients", (req, res) => {
   });
 });
 
-router.get("/patient/:id", (req, res) => {
-  const query = `
-    SELECT *
-    FROM patientinfo2
-    WHERE patientID = ${req.params.id};
-    `;
-  client.query(query).then((results) => {
-    res.status(200).json(results.rows);
-  });
-});
-
-router.get("/patient-location/room/:roomid", (req, res) => {
-  const query = `
-    SELECT *
-    FROM patientlocation2
-    WHERE roomID = ${req.params.roomid};
-    `;
-  client.query(query).then((results) => {
-    res.status(200).json(results.rows);
-  });
-});
-
-router.get("/patient-location/room/:patientid", (req, res) => {
-  const query = `
-    SELECT *
-    FROM patientlocation2
-    WHERE patientID = ${req.params.patientid};
-    `;
-  client.query(query).then((results) => {
-    res.status(200).json(results.rows);
-  });
-});
-
 module.exports = router;
