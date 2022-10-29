@@ -1,3 +1,8 @@
+const Router = require("express-promise-router");
+const router = new Router();
+
+const client = require("../data/client");
+
 router.get("/patient/:id", (req, res) => {
   const query = `
       SELECT *

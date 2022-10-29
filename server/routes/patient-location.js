@@ -1,3 +1,8 @@
+const Router = require("express-promise-router");
+const router = new Router();
+
+const client = require("../data/client");
+
 router.get("/patient-location/room/:roomid", (req, res) => {
   const query = `
       SELECT *

@@ -2,6 +2,7 @@ const client = require("./data/client");
 const cors = require("cors");
 const express = require("express");
 const app = express();
+const port = 3001;
 
 // Routes
 const room = require("./routes/room");
@@ -25,7 +26,7 @@ app.use("/", patients, patient, patientLocation, rooms, room);
 
 // Listen for requests from client
 app.listen(port, () => {
-  console.log("Server listening...");
+  console.log(`Example app listening on port ${port}`);
 });
 
 module.exports = app;
