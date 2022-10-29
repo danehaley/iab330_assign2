@@ -21,6 +21,7 @@ router.patch("/room/:id/:update", async (req, res) => {
     WHERE roomid = ${req.params.id}
     `;
   client.query(query);
+  res.end();
 });
 
 router.get("/room/:id", async (req, res) => {

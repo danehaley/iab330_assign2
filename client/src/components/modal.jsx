@@ -9,6 +9,7 @@ export default function Modal(props) {
   function pluralizer(number, object, stop = false) {
     return `${number} ${object}${number > 1 && "s"}${stop ? "" : ","}`;
   }
+
   function requestClean() {
     fetch(
       `http://localhost:3001/room/${props.roomid}/${encodeURI(
@@ -18,7 +19,9 @@ export default function Modal(props) {
         method: "PATCH",
       }
     );
+    props.setUpdateToggle(!props.updateToggle);
   }
+
   return (
     <>
       <BootstrapModal show={props.show} onHide={props.handleClose}>

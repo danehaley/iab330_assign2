@@ -14,12 +14,13 @@ import Availability from "../components/availability";
 
 export default function Maintenance() {
   const [rooms, setRooms] = useState([]);
+  const [updateToggle, setUpdateToggle] = useState(false);
 
   useEffect(() => {
     getDataRooms().then((data) => {
       setRooms(data);
     });
-  }, []);
+  }, [updateToggle]);
 
   async function getDataRooms() {
     const result = await fetch("http://localhost:3001/rooms");
@@ -64,7 +65,13 @@ export default function Maintenance() {
             </Card.Body>
           </Card>
         </Col>
-        <Modal {...props} show={show} handleClose={handleClose} />
+        <Modal
+          {...props}
+          updateToggle={updateToggle}
+          setUpdateToggle={setUpdateToggle}
+          show={show}
+          handleClose={handleClose}
+        />
       </>
     );
   }
@@ -86,7 +93,7 @@ export default function Maintenance() {
       <Container className="maintenance px-2">
         <Nav className="maintenance-nav nav px-4 pt-5 pb-3">
           <Nav.Item>
-            <h3 className="fw-bold"></h3>
+            <h3 className="fw-bold">Rooms</h3>
           </Nav.Item>
           <Nav.Link as="button" className="icon-button py-0 px-2 ms-auto">
             <Search />
