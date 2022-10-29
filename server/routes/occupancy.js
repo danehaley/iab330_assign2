@@ -17,12 +17,10 @@ router.get("/rooms", async (req, res) => {
 router.patch("/room/:id/:update", async (req, res) => {
   const query = `
     UPDATE roomoccupancy2
-    SET status = '${req.params.update}'
+    SET status = '${decodeURI(req.params.update)}'
     WHERE roomid = ${req.params.id}
     `;
-  client.query(query).then((results) => {
-    res.status(200).json(results.rows);
-  });
+  client.query(query);
 });
 
 router.get("/room/:id", async (req, res) => {

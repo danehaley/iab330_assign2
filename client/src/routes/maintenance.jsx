@@ -46,7 +46,7 @@ export default function Maintenance() {
               <Card.Title className="fs-4 fw-bold">
                 {`${props.roomtype.toUpperCase()} ROOM ${props.roomid}`}
               </Card.Title>
-              <Card.Text className="fs-5 d-flex mb-4">
+              <Card.Text className="fs-4 d-flex mb-4">
                 {Availability(props.status)}
               </Card.Text>
               <Card.Text className="d-flex">

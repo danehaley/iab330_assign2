@@ -9,7 +9,16 @@ export default function Modal(props) {
   function pluralizer(number, object, stop = false) {
     return `${number} ${object}${number > 1 && "s"}${stop ? "" : ","}`;
   }
-  function requestClean() {}
+  function requestClean() {
+    fetch(
+      `http://localhost:3001/room/${props.roomid}/${encodeURI(
+        "clean requested"
+      )}`,
+      {
+        method: "PATCH",
+      }
+    );
+  }
   return (
     <>
       <BootstrapModal show={props.show} onHide={props.handleClose}>

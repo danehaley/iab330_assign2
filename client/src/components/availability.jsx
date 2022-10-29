@@ -16,7 +16,7 @@ export default function Availability(state, fontSize = "fs-5") {
         </>
       );
     }
-    case "Cleaning": {
+    case "cleaning": {
       return (
         <>
           <BsCone color={"Orange"} size={21} className="mx-0 my-auto" />
@@ -24,7 +24,7 @@ export default function Availability(state, fontSize = "fs-5") {
         </>
       );
     }
-    case "Clean Requested": {
+    case "clean requested": {
       return (
         <>
           <BsTelephoneOutbound
@@ -36,7 +36,7 @@ export default function Availability(state, fontSize = "fs-5") {
         </>
       );
     }
-    case "In Use": {
+    case "in use": {
       return (
         <>
           <BsDashCircle color={"#DC3545"} size={21} className="mx-0 my-auto" />
