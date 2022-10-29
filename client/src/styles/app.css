@@ -2,6 +2,9 @@
   min-height: 100vh;
   font-family: "Helvetica", sans-serif;
 }
+.header {
+  z-index: 999;
+}
 
 .icon-button {
   border: 0;

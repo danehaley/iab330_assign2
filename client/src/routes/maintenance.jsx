@@ -12,12 +12,16 @@ import Search from "../components/search";
 import Modal from "../components/modal";
 import Availability from "../components/availability";
 
-function getRoom(id) {}
-
 export default function Maintenance() {
   const [rooms, setRooms] = useState([]);
 
-  async function getData() {
+  useEffect(() => {
+    getDataRooms().then((data) => {
+      setRooms(data);
+    });
+  }, []);
+
+  async function getDataRooms() {
     const result = await fetch("http://localhost:3001/rooms");
     const data = await result.json();
     return data;
@@ -40,41 +44,27 @@ export default function Maintenance() {
           <Card className="w-100 rounded-4">
             <Card.Body>
               <Card.Title className="fs-4 fw-bold">
-                {props.name.toUpperCase()}
+                {`${props.roomtype.toUpperCase()} ROOM ${props.roomid}`}
               </Card.Title>
               <Card.Text className="fs-5 d-flex mb-4">
-                {Availability(props.state)}
+                {Availability(props.status)}
               </Card.Text>
               <Card.Text className="d-flex">
                 <div className="me-4">
-                  {props.currentPop}
+                  {props.traffic}
                   <BsPeopleFill size={28} className="ms-2 me-1" />{" "}
                   <strong className="fw-bold">Currently</strong>
                 </div>
                 <div className="me-4">
-                  {props.sinceCleanPop}
+                  {props.totaloccupants}
                   <BsPeopleFill size={28} className="ms-2 me-1" />{" "}
                   <strong className="fw-bold">Since Clean</strong>
                 </div>
               </Card.Text>
-              <Card.Text className="text-black-50">
-                <span className="fw-bold">Last Cleaned</span>:{" "}
-                {props.lastCleanDate}
-              </Card.Text>
             </Card.Body>
           </Card>
         </Col>
-        <Modal
-          name={props.name.toUpperCase()}
-          info={{
-            state: props.state,
-            currentPop: props.currentPop,
-            sinceCleanPop: props.sinceCleanPop,
-            lastCleanDate: props.lastCleanDate,
-          }}
-          show={show}
-          handleClose={handleClose}
-        />
+        <Modal {...props} show={show} handleClose={handleClose} />
       </>
     );
   }
@@ -84,24 +74,12 @@ export default function Maintenance() {
       <Container className="px-4 mb-5" style={{ maxWidth: "1320px" }}>
         <Row className="gx-3">
           {rooms.map((room) => (
-            <CreateCard
-              name={"ROOM " + room.roomid.toString()}
-              state={room.status}
-              currentPop={room.totaloccupants}
-              sinceCleanPop={room.traffic}
-              lastCleanDate={"23:59 12/10/2022"}
-            />
+            <CreateCard {...room} />
           ))}
         </Row>
       </Container>
     );
   }
-
-  useEffect(() => {
-    getData().then((data) => {
-      setRooms(data);
-    });
-  }, []);
 
   return (
     <>

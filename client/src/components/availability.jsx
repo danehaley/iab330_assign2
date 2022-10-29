@@ -6,14 +6,13 @@ import {
   BsCone,
 } from "react-icons/bs";
 
-export default function Availability(state) {
-  console.log(state);
+export default function Availability(state, fontSize = "fs-5") {
   switch (state) {
     case "clean": {
       return (
         <>
           <BsCheckCircle color={"Green"} size={21} className="mx-0 my-auto" />
-          <p className="ms-2 my-auto lh-1 fs-5">Available</p>
+          <p className={"ms-2 my-auto lh-1 " + fontSize}>Available</p>
         </>
       );
     }
@@ -21,7 +20,7 @@ export default function Availability(state) {
       return (
         <>
           <BsCone color={"Orange"} size={21} className="mx-0 my-auto" />
-          <p className="ms-1 my-auto lh-1 fs-5">Cleaning</p>
+          <p className={"ms-2 my-auto lh-1 " + fontSize}>Cleaning</p>
         </>
       );
     }
@@ -33,7 +32,7 @@ export default function Availability(state) {
             size={21}
             className="mx-0 my-auto"
           />
-          <p className="ms-2 my-auto lh-1 fs-5">Clean Requested</p>
+          <p className={"ms-2 my-auto lh-1 " + fontSize}>Clean Requested</p>
         </>
       );
     }
@@ -41,7 +40,7 @@ export default function Availability(state) {
       return (
         <>
           <BsDashCircle color={"#DC3545"} size={21} className="mx-0 my-auto" />
-          <p className="ms-2 my-auto lh-1 fs-5">In Use</p>
+          <p className={"ms-2 my-auto lh-1 " + fontSize}>In Use</p>
         </>
       );
     }
@@ -49,7 +48,7 @@ export default function Availability(state) {
       return (
         <>
           <BsXCircleFill color={"#DC3545"} size={21} className="mx-0 my-auto" />
-          <p className="ms-2 my-auto lh-1 fs-5">Error</p>
+          <p className={"ms-2 my-auto lh-1 " + fontSize}>Error</p>
         </>
       );
     }
