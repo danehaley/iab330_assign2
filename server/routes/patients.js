@@ -16,16 +16,11 @@ router.get("/patients", (req, res) => {
 router.get("/patient/:id", (req, res) => {
   const query = `
     SELECT *
-    FROM patientinfo2;
+    FROM patientinfo2
+    WHERE patientID = ${req.params.id};
     `;
-  client.query(query, (err, res) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    for (let row of res.rows) {
-      console.log(row);
-    }
+  client.query(query).then((results) => {
+    res.status(200).json(results.rows);
   });
 });
 
