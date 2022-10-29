@@ -32,7 +32,7 @@ export default function Modal(props) {
         </BootstrapModal.Header>
         <BootstrapModal.Body>
           <div className="fs-5 d-flex mb-3">
-            {Availability(props.status, "fs-3")}
+            {Availability(props.status, "fs-4")}
           </div>
           <div className="d-flex flex-row fs-5">
             <div className="me-4">
