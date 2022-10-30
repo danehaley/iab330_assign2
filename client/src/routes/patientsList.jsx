@@ -42,50 +42,43 @@ export default function PatientsList() {
         <Col xs={12} md={6} lg={4} className="py-2" onClick={handleShow}>
           <Card className="w-100 rounded-4">
             <Card.Body>
-              <Card.Title className="fs-4 fw-bold">
-                {props.name}
-              </Card.Title>
+              <Card.Title className="fs-4 fw-bold">{props.name}</Card.Title>
               <Card.Text className="d-flex">
                 <div className="d-flex">
                   <div className="me-4">
-                    <strong className="fw-bold">Patient ID:</strong>
-                    {" "}
+                    <strong className="fw-bold">Patient ID:</strong>{" "}
                     {props.patientID}
                   </div>
                 </div>
               </Card.Text>
               <Card.Text className="d-flex">
-              <div className="d-flex">
-                <div className="me-4">
-                  <strong className="fw-bold">Age:</strong>
-                  {" "}
-                  {props.age}
+                <div className="d-flex">
+                  <div className="me-4">
+                    <strong className="fw-bold">Age:</strong> {props.age}
+                  </div>
+                  <div className="me-4">
+                    <strong className="fw-bold">Gender:</strong> {props.gender}
+                  </div>
                 </div>
-                <div className="me-4">
-                  <strong className="fw-bold">Gender:</strong>
-                  {" "}
-                  {props.gender}
-                </div>
-              </div>
               </Card.Text>
             </Card.Body>
           </Card>
         </Col>
-      <Modal
-        name={props.name}
-        info={{
-          status: props.status,
-          patientID: props.patientID,
-          age: props.age,
-          gender: props.gender,
-          roomID: props.roomid
-        }}
-        show={show}
-        handleClose={handleClose}
-      />
-    </>
-  );
-}
+        <Modal
+          name={props.name}
+          info={{
+            status: props.status,
+            patientID: props.patientID,
+            age: props.age,
+            gender: props.gender,
+            roomID: props.roomid,
+          }}
+          show={show}
+          handleClose={handleClose}
+        />
+      </>
+    );
+  }
 
   function CreateCardList() {
     return (
@@ -115,7 +108,7 @@ export default function PatientsList() {
       <Container className="maintenance px-2">
         <Nav className="maintenance-nav nav px-4 pt-5 pb-3">
           <Nav.Item>
-            <h3 className="fw-bold"></h3>
+            <h3 className="fw-bold">Patients</h3>
           </Nav.Item>
           <Nav.Link as="button" className="icon-button py-0 px-2 ms-auto">
             <Search />

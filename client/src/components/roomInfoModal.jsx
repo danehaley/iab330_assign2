@@ -75,7 +75,7 @@ export default function Modal(props) {
         </BootstrapModal.Header>
         <BootstrapModal.Body>
           <div className="fs-5 d-flex mb-3">
-            {Availability(props.status, "fs-4")}
+            {Availability(props.status, "fs-4", "Maintenance")}
           </div>
           <div className="d-flex flex-row fs-5">
             <div className="me-4">
@@ -103,16 +103,17 @@ export default function Modal(props) {
                 History
               </BootstrapModal.Title>
               <div style={{ width: "95%", height: "50vh", maxHeight: "400px" }}>
-                <ResponsiveContainer height="100%">
+                <ResponsiveContainer height="100%" width={"100%"}>
                   <LineChart data={data.history}>
                     <YAxis
                       interval={1}
                       padding={{ top: 10 }}
                       tickCount={5}
                       allowDecimals={false}
+                      dx={2}
                       width={60}
                     >
-                      <Label value="People" angle={-90} offset={5} />
+                      <Label value="People" dx={-5} angle={-90} offset={0} />
                     </YAxis>
                     <XAxis
                       dataKey="time"
@@ -122,7 +123,12 @@ export default function Modal(props) {
                       padding={{ right: 30 }}
                       width={40}
                     >
-                      <Label value="Time" offset={0} position="insideBottom" />
+                      <Label
+                        value="Time"
+                        dy={2}
+                        offset={0}
+                        position="insideBottom"
+                      />
                     </XAxis>
                     <Line
                       dataKey="numberOfPeople.current"
@@ -150,6 +156,9 @@ export default function Modal(props) {
             {props.status === "clean requested"
               ? "Cancel Clean"
               : "Request Clean"}
+          </Button>
+          <Button variant={"primary"} className="w-100" onClick={null}>
+            Clean
           </Button>
         </BootstrapModal.Footer>
       </BootstrapModal>

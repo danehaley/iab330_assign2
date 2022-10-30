@@ -13,16 +13,16 @@ const lengthFun = async () => {
 
 lengthFun();
 
-// Every 2nd minute
-cron.schedule("*/2 * * * *", async function () {
+// Every minute
+cron.schedule("* * * * *", async function () {
   for (let i = 1; i <= length; i++) {
     console.log("UPDATED HISTORY OF ROOM ID: " + i);
     await fetch(`http://localhost:3001/room/${i}`);
   }
 });
 
-// Every 6th hour (i.e. 6, 12, 18, 24hr)
-cron.schedule("0 */6 * * *", async function () {
+// Every hour reset length
+cron.schedule("0 */1 * * *", async function () {
   lengthFun();
 });
 
