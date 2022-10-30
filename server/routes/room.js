@@ -1,6 +1,6 @@
 const Router = require("express-promise-router");
 const router = new Router();
-const addRoomData = new require("../util/addRoomData");
+const roomData = new require("../util/roomData");
 
 const client = require("../data/client");
 
@@ -43,7 +43,7 @@ router.get("/room/:id", async (req, res) => {
     };
 
     // send to JSON
-    addRoomData("./data/json/rooms_history.json", id, processed);
+    roomData.addRoomData("./data/json/rooms_history.json", id, processed);
   });
 });
 

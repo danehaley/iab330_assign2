@@ -6,6 +6,7 @@ const port = 3001;
 
 // Routes
 const room = require("./routes/room");
+const roomHistory = require("./routes/room-history");
 const rooms = require("./routes/rooms");
 
 const patients = require("./routes/patients");
@@ -22,7 +23,7 @@ app.use(
 );
 
 // Use routes from the following imports
-app.use("/", patients, patient, patientLocation, rooms, room);
+app.use("/", patients, patient, patientLocation, rooms, room, roomHistory);
 
 // Listen for requests from client
 app.listen(port, () => {

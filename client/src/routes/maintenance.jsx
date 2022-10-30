@@ -52,12 +52,12 @@ export default function Maintenance() {
               </Card.Text>
               <Card.Text className="d-flex">
                 <div className="me-4">
-                  {props.traffic}
+                  {props.totaloccupants}
                   <BsPeopleFill size={28} className="ms-2 me-1" />{" "}
                   <strong className="fw-bold">Currently</strong>
                 </div>
                 <div className="me-4">
-                  {props.totaloccupants}
+                  {props.traffic}
                   <BsPeopleFill size={28} className="ms-2 me-1" />{" "}
                   <strong className="fw-bold">Since Clean</strong>
                 </div>
