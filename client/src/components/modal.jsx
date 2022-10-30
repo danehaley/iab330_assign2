@@ -83,19 +83,24 @@ export default function Modal(props) {
             <p className="text-secondary">Last Cleaned: hi</p>
           </div>
           {data && (
-            <div style={{ width: "100%", height: "50vh", maxHeight: "400px" }}>
-              <ResponsiveContainer height="100%">
-                <LineChart data={data.history}>
-                  <Line
-                    dataKey="numberOfPeople.current"
-                    barSize={20}
-                    fill="#8884d8"
-                  />
-                  <XAxis dataKey="time" />
-                  <YAxis width={30} />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
+            <>
+              <BootstrapModal.Title className="fw-bold fs-3">
+                {`${props.roomtype.toUpperCase()} ROOM ${props.roomid}`}
+              </BootstrapModal.Title>
+              <div style={{ width: "95%", height: "50vh", maxHeight: "400px" }}>
+                <ResponsiveContainer height="100%">
+                  <LineChart data={data.history}>
+                    <Line
+                      dataKey="numberOfPeople.current"
+                      barSize={20}
+                      fill="#8884d8"
+                    />
+                    <XAxis dataKey="time" />
+                    <YAxis width={30} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </>
           )}
         </BootstrapModal.Body>
         <BootstrapModal.Footer>

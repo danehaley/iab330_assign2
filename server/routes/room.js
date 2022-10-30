@@ -15,6 +15,7 @@ router.patch("/room/:id/:update", async (req, res) => {
 });
 
 router.get("/room/:id", async (req, res) => {
+  const formatDate = require("../util/formatDate");
   const id = parseInt(req.params.id);
   const query = `
       SELECT roomoccupancy2.roomid, roomoccupancy2.status, roomoccupancy2.patient, roomoccupancy2.nurse, roomoccupancy2.doctor, roomoccupancy2.traffic, roomoccupancy2.totalOccupants, rooms.roomType
@@ -29,7 +30,7 @@ router.get("/room/:id", async (req, res) => {
     // Process data into history object
     const room = results.rows[0];
     const processed = {
-      time: new Date(),
+      time: formatDate(new Date()),
       status: room.status,
       numberOfPeople: {
         current: room.traffic,

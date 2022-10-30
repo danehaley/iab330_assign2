@@ -4,15 +4,21 @@ function addRoomData(file, value, data) {
   rooms = JSON.parse(fs.readFileSync(file));
 
   // Could be optimized in practice, but for MVP
+  let flag = 0;
   rooms.every((room) => {
     if (room["id"] === value) {
       room["history"].push(data);
-
+      flag = 1;
       // Break loop
       return false;
     }
     return true;
   });
+
+  // If doesn't exist, create new
+  if (flag === 0) {
+    rooms.push({ id: value, history: [data] });
+  }
 
   fs.writeFileSync(file, JSON.stringify(rooms));
 }

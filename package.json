@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start:client": "cd ./client && PORT=9191 npm run start",
-    "start:server": "cd ./server && node ./bin/www",
+    "start:server": "cd ./server && npm run start",
+    "start:script": "cd ./server && node ./jobs/updateData.js",
     "start": "concurrently \"npm run start:client\" \" npm run start:server\""
   },
   "devDependencies": {
