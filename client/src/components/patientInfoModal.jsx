@@ -1,7 +1,27 @@
 import Button from "react-bootstrap/Button";
 import BootstrapModal from "react-bootstrap/Modal";
+import {useState, useEffect } from "react";
 
 export default function Modal(props) {
+  const [patientRooms, setPatientRoom] = useState([]);
+
+  async function getData() {
+    const result = await fetch(`http://localhost:3001/patient-location/${props.info.patientID}`);
+    const data = await result.json();
+    return data;
+  }
+
+  useEffect(() => {
+    getData()
+    .then(works => works.map(patientRoom => {
+      return {
+        roomid: patientRoom.roomid
+      };
+      })
+    )
+    .then(data => setPatientRoom(data));
+  }, [props.roomid]);
+
   return (
     <BootstrapModal show={props.show} onHide={props.handleClose}>
       <BootstrapModal.Header closeButton>
@@ -36,7 +56,7 @@ export default function Modal(props) {
           <div className="me-4">
             <strong className="fw-bold">Room ID:</strong>
             {" "}
-            {props.info.roomID}
+            {patientRooms.roomid}
           </div>
         </div>
       </BootstrapModal.Body>
