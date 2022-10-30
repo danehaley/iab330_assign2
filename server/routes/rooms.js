@@ -3,6 +3,7 @@ const router = new Router();
 
 const client = require("../data/client");
 
+// Get all rooms
 router.get("/rooms", async (req, res) => {
   const query = `
     SELECT roomoccupancy2.roomid, roomoccupancy2.status, roomoccupancy2.patient, roomoccupancy2.nurse, roomoccupancy2.doctor, roomoccupancy2.traffic, roomoccupancy2.totalOccupants, rooms.roomType
