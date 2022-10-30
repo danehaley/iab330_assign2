@@ -6,13 +6,21 @@ import {
   BsCone,
 } from "react-icons/bs";
 
-export default function Availability(state, fontSize = "fs-5") {
+export default function Availability(
+  state,
+  fontSize = "fs-5",
+  page = "default"
+) {
   switch (state) {
     case "clean": {
+      state = "Available";
+      if (page === "Maintenance") {
+        state = "Clean";
+      }
       return (
         <>
           <BsCheckCircle color={"Green"} size={21} className="mx-0 my-auto" />
-          <p className={"ms-2 my-auto lh-1 " + fontSize}>Available</p>
+          <p className={"ms-2 my-auto lh-1 " + fontSize}>{state}</p>
         </>
       );
     }

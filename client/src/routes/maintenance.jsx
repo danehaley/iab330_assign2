@@ -5,11 +5,12 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import capitalize from "../helpers/capitalize";
 
 // Components
 import Search from "../components/search";
 //import Filter from "../components/filter";
-import Modal from "../components/modal";
+import Modal from "../components/roomInfoModal";
 import Availability from "../components/availability";
 
 export default function Maintenance() {
@@ -45,10 +46,10 @@ export default function Maintenance() {
           <Card className="w-100 rounded-4">
             <Card.Body>
               <Card.Title className="fs-4 fw-bold">
-                {`${props.roomtype.toUpperCase()} ROOM ${props.roomid}`}
+                {`${capitalize(props.roomtype)} Room ${props.roomid}`}
               </Card.Title>
               <Card.Text className="fs-4 d-flex mb-4">
-                {Availability(props.status)}
+                {Availability(props.status, "fs-5", "Maintenance")}
               </Card.Text>
               <Card.Text className="d-flex">
                 <div className="me-4">

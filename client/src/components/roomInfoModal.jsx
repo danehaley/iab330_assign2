@@ -1,9 +1,17 @@
-import { useState } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import BootstrapModal from "react-bootstrap/Modal";
 import { BsPeopleFill } from "react-icons/bs";
-import { LineChart, XAxis, YAxis, Line, ResponsiveContainer } from "recharts";
+import {
+  LineChart,
+  XAxis,
+  YAxis,
+  Line,
+  ResponsiveContainer,
+  Label,
+} from "recharts";
+import capitalize from "../helpers/capitalize";
+import pluralizer from "../helpers/pluralizer";
 
 // Component import
 import Availability from "./availability";
@@ -16,10 +24,6 @@ export default function Modal(props) {
     setOpen(!open);
   }
 
-  function pluralizer(number, object, stop = false) {
-    return `${number} ${object}${number > 1 && "s"}${stop ? "" : ","}`;
-  }
-
   function requestClean() {
     fetch(
       `http://localhost:3001/room/${props.roomid}/${encodeURI(
@@ -29,6 +33,13 @@ export default function Modal(props) {
         method: "PATCH",
       }
     );
+    props.setUpdateToggle(!props.updateToggle);
+  }
+
+  function cancelClean() {
+    fetch(`http://localhost:3001/room/${props.roomid}/${encodeURI("clean")}`, {
+      method: "PATCH",
+    });
     props.setUpdateToggle(!props.updateToggle);
   }
 
@@ -45,6 +56,10 @@ export default function Modal(props) {
     }
   }, [open, props.roomid]);
 
+  const formatXAxis = (tickFormat) => {
+    return String(tickFormat).substring(11, 16);
+  };
+
   return (
     <>
       <BootstrapModal
@@ -55,7 +70,7 @@ export default function Modal(props) {
       >
         <BootstrapModal.Header closeButton>
           <BootstrapModal.Title className="fw-bold fs-3">
-            {`${props.roomtype.toUpperCase()} ROOM ${props.roomid}`}
+            {`${capitalize(props.roomtype)} Room ${props.roomid}`}
           </BootstrapModal.Title>
         </BootstrapModal.Header>
         <BootstrapModal.Body>
@@ -84,19 +99,38 @@ export default function Modal(props) {
           </div>
           {data && (
             <>
-              <BootstrapModal.Title className="fw-bold fs-3">
-                {`${props.roomtype.toUpperCase()} ROOM ${props.roomid}`}
+              <BootstrapModal.Title className="fw-bold fs-3 mb-3">
+                History
               </BootstrapModal.Title>
               <div style={{ width: "95%", height: "50vh", maxHeight: "400px" }}>
                 <ResponsiveContainer height="100%">
                   <LineChart data={data.history}>
+                    <YAxis
+                      interval={1}
+                      padding={{ top: 10 }}
+                      tickCount={5}
+                      allowDecimals={false}
+                      width={60}
+                    >
+                      <Label value="People" angle={-90} offset={5} />
+                    </YAxis>
+                    <XAxis
+                      dataKey="time"
+                      tickFormatter={(tick) => formatXAxis(tick)}
+                      interval={30}
+                      height={40}
+                      padding={{ right: 30 }}
+                      width={40}
+                    >
+                      <Label value="Time" offset={0} position="insideBottom" />
+                    </XAxis>
                     <Line
                       dataKey="numberOfPeople.current"
                       barSize={20}
                       fill="#8884d8"
+                      dot={false}
+                      isAnimationActive={false}
                     />
-                    <XAxis dataKey="time" />
-                    <YAxis width={30} />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
@@ -104,8 +138,18 @@ export default function Modal(props) {
           )}
         </BootstrapModal.Body>
         <BootstrapModal.Footer>
-          <Button variant="primary" className="w-100" onClick={requestClean}>
-            Request Clean
+          <Button
+            variant={
+              props.status === "clean requested" ? "secondary" : "primary"
+            }
+            className="w-100"
+            onClick={
+              props.status === "clean requested" ? cancelClean : requestClean
+            }
+          >
+            {props.status === "clean requested"
+              ? "Cancel Clean"
+              : "Request Clean"}
           </Button>
         </BootstrapModal.Footer>
       </BootstrapModal>
