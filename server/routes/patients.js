@@ -3,6 +3,7 @@ const client = require("../data/client");
 const express = require("express");
 const router = express.Router();
 
+// Get all patients
 router.get("/patients", (req, res) => {
   const query = `
     SELECT *

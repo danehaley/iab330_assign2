@@ -4,6 +4,7 @@ const roomData = new require("../util/roomData");
 
 const client = require("../data/client");
 
+// Update status of room
 router.patch("/room/:id/:update", async (req, res) => {
   const query = `
       UPDATE roomoccupancy2
@@ -14,6 +15,7 @@ router.patch("/room/:id/:update", async (req, res) => {
   res.end();
 });
 
+// Get specific room
 router.get("/room/:id", async (req, res) => {
   const formatDate = require("../util/formatDate");
   const id = parseInt(req.params.id);

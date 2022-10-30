@@ -3,6 +3,7 @@ const router = new Router();
 
 const client = require("../data/client");
 
+// Get specific patient
 router.get("/patient/:id", (req, res) => {
   const query = `
       SELECT *
