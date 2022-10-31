@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  api:
+    build:
+      context: ./server
+      dockerfile: dockerfile
+    container_name: api
+    hostname: api
+    restart: always
+    ports: 
+      - "9000:9000"
+    volumes:
+      -  './server:/app'
+      - '/app/node_modules'
+    environment:
+      - NODE_ENV=development
+    networks:
+      - iab330_Harry
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.development
+    container_name: client_dev
+    hostname: client_dev
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client/src:/app/src
+      - '/app/node_modules'
+    enviroment:
+      - NODE_ENV=development
+      - REACT_APP_NOT_SECRET_CODE=GROUP_3DEV
+    stdin_open: true
+    tty: true
+    networks:
+      - iab330_Harry
+networks:
+  iab330_Harry:
+    external: true
