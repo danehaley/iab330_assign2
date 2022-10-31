@@ -24,7 +24,7 @@ services:
     hostname: client_prod
     restart: always
     ports:
-      - "3080:3080"
+      - "80:80"
     volumes:
       - ./client/src:/app/src
       - "/app/node_modules"
