@@ -5,7 +5,7 @@
   "scripts": {
     "start:server": "node ./bin/www",
     "start:script": "node ./jobs/updateData.js",
-    "start": "concurrently 'npm run start:server' '$(npm bin)/wait-on http://localhost:3001/rooms && npm run start:script'"
+    "start": "npm run start:server"
   },
   "dependencies": {
     "axios": "^1.1.3",
