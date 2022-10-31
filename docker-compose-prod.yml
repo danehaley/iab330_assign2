@@ -3,7 +3,7 @@ services:
   api:
     build:
       context: ./server
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     container_name: api_prod
     hostname: api_prod
     restart: always
