@@ -5,7 +5,6 @@ export default function Refresh(props) {
   const [animationState, setAnimationState] = useState(false);
 
   const handleRefresh = () => {
-    console.log("hi");
     setAnimationState(true);
     props.setUpdateToggle(!props.updateToggle);
   };

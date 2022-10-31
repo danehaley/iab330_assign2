@@ -1,5 +1,6 @@
 import Header from "../components/header.jsx";
 import patientList from "../components/patientList";
+import Refresh from "../components/refresh.jsx";
 import React, { useState, useEffect } from "react";
 import { BsPeopleFill } from "react-icons/bs";
 import Nav from "react-bootstrap/Nav";
@@ -146,6 +147,10 @@ export default function PatientsList() {
           <Nav.Link as="button" className="icon-button py-0 ps-2 pe-0">
             {/*<Filter />*/}
           </Nav.Link>
+          <Refresh
+            updateToggle={updateToggle}
+            setUpdateToggle={setUpdateToggle}
+          />
         </Nav>
         {patients != null && <CreateCardList />}
       </Container>
