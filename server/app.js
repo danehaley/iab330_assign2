@@ -25,9 +25,4 @@ app.use(
 // Use routes from the following imports
 app.use("/", patients, patient, patientLocation, rooms, room, roomHistory);
 
-// Listen for requests from client
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
-
 module.exports = app;

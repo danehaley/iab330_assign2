@@ -31,7 +31,7 @@ export default function Maintenance(props) {
   }, [updateToggle]);
 
   async function getDataRooms() {
-    const result = await fetch(`${props.serverURL}/rooms`);
+    const result = await fetch(`${props.baseURL}:3000/rooms`);
     const data = await result.json();
     return data;
   }
@@ -75,7 +75,6 @@ export default function Maintenance(props) {
         </Col>
         <Modal
           {...props}
-          serverURL={props.serverURL}
           updateToggle={updateToggle}
           setUpdateToggle={setUpdateToggle}
           show={show}
@@ -90,8 +89,8 @@ export default function Maintenance(props) {
       <Container className="px-4 mb-5" style={{ maxWidth: "1320px" }}>
         <Row className="gx-3">
           {searchResults !== undefined
-            ? searchResults.map((room) => <CreateCard {...room} {...props} />)
-            : rooms.map((room) => <CreateCard {...room} {...props} />)}
+            ? searchResults.map((room) => <CreateCard {...props} {...room} />)
+            : rooms.map((room) => <CreateCard {...props} {...room} />)}
         </Row>
       </Container>
     );

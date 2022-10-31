@@ -5,7 +5,7 @@ const fetch = (...args) =>
 let length;
 
 const lengthFun = async () => {
-  const result = await fetch("http://localhost:3001/rooms");
+  const result = await fetch(`${props.baseURL}:3000/rooms`);
   const data = await result.json();
   length = await data.length;
   console.log("UPDATED LENGTH: " + (await length));
@@ -17,7 +17,7 @@ lengthFun();
 cron.schedule("* * * * *", async function () {
   for (let i = 1; i <= length; i++) {
     console.log("UPDATED HISTORY OF ROOM ID: " + i);
-    await fetch(`http://localhost:3001/room/${i}`);
+    await fetch(`${props.baseURL}:3000/room/${i}`);
   }
 });
 

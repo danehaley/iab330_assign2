@@ -4,14 +4,16 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
-    container_name: server
-    hostname: server
+    container_name: api_prod
+    hostname: api_prod
     restart: always
     ports:
-      - "3001:3001"
+      - "3000:3000"
     volumes:
-      - './server:/app'
-      - '/app/node_modules'
+      - "./server:/app"
+      - "/app/node_modules"
+    environment:
+      - NODE_ENV=production
     networks:
       - iab330_Harry
   client:
@@ -22,11 +24,11 @@ services:
     hostname: client_prod
     restart: always
     ports:
-      - "3000:3000"
+      - "3001:3001"
     volumes:
       - ./client/src:/app/src
-      - '/app/node_modules'
-    enviroment:
+      - "/app/node_modules"
+    environment:
       - NODE_ENV=production
     stdin_open: true
     tty: true

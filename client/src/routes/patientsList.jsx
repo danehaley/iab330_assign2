@@ -24,7 +24,7 @@ export default function PatientsList(props) {
   const [updateToggle, setUpdateToggle] = useState(false);
 
   async function getData() {
-    const result = await fetch(`${props.serverURL}/patients`);
+    const result = await fetch(`${props.baseURL}:3000/patients`);
     const data = await result.json();
     return data;
   }
