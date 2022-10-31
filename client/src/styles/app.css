@@ -21,6 +21,20 @@
   -moz-appearance: none;
 }
 
+.icon-button__refresh {
+  animation: do-a-spin 1s infinite ease-in-out;
+  transform-origin: center center;
+}
+
+@keyframes do-a-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .card {
   transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
   cursor: pointer;

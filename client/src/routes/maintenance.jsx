@@ -10,6 +10,7 @@ import capitalize from "../helpers/capitalize";
 // Components
 import Search from "../components/search";
 //import Filter from "../components/filter";
+import Refresh from "../components/refresh";
 import Modal from "../components/roomInfoModal";
 import Availability from "../components/availability";
 
@@ -121,6 +122,10 @@ export default function Maintenance() {
           <Nav.Link as="button" className="icon-button py-0 ps-2 pe-0">
             {/*<Filter />*/}
           </Nav.Link>
+          <Refresh
+            updateToggle={updateToggle}
+            setUpdateToggle={setUpdateToggle}
+          />
         </Nav>
         {rooms != null && <CreateCardList />}
       </Container>
