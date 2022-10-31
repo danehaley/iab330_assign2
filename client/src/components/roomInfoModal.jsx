@@ -24,26 +24,37 @@ export default function Modal(props) {
     setOpen(!open);
   }
 
+  async function postData(url) {
+    await fetch(url, {
+      method: "PATCH",
+    });
+  }
+
   function requestClean() {
-    fetch(
+    postData(
       `${props.baseURL}:3000/room/${props.roomid}/${encodeURI(
         "clean requested"
-      )}`,
-      {
-        method: "PATCH",
-      }
-    );
-    props.setUpdateToggle(!props.updateToggle);
+      )}`
+    ).then(() => {
+      props.setUpdateToggle(!props.updateToggle);
+    });
   }
 
   function submitClean() {
-    fetch(`${props.baseURL}:3000/room/${props.roomid}/${encodeURI("clean")}`, {
-      method: "PATCH",
+    postData(
+      `${props.baseURL}:3000/room/${props.roomid}/${encodeURI("clean")}`
+    ).then(() => {
+      props.setUpdateToggle(!props.updateToggle);
     });
-    props.setUpdateToggle(!props.updateToggle);
   }
 
   function cancelCleanRequest() {
+    postData(
+      `${props.baseURL}:3000/room/${props.roomid}/${encodeURI("clean")}`
+    ).then(() => {
+      props.setUpdateToggle(!props.updateToggle);
+    });
+
     fetch(`${props.baseURL}:3000/room/${props.roomid}/${encodeURI("clean")}`, {
       method: "PATCH",
     });
