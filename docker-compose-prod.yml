@@ -8,7 +8,7 @@ services:
     hostname: api_prod
     restart: always
     ports: 
-      - "8000:8000"
+      - "3001:3001"
     volumes:
       -  './server:/app'
       - '/app/node_modules'
@@ -30,7 +30,7 @@ services:
       - '/app/node_modules'
     enviroment:
       - NODE_ENV=production
-      - REACT_APP_NOT_SECRET_CODE=GROUP_3DEV
+      - REACT_APP_NOT_SECRET_CODE=GROUP_3PROD
     stdin_open: true
     tty: true
     networks:
