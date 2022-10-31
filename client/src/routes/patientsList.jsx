@@ -18,13 +18,13 @@ import Status from "../components/patientStatus";
 // Get ID, room number, gender, bed ID, roomID
 function getPatient(id) {}
 
-export default function PatientsList() {
+export default function PatientsList(props) {
   const [patients, setPatients] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [updateToggle, setUpdateToggle] = useState(false);
 
   async function getData() {
-    const result = await fetch("http://localhost:3001/patients");
+    const result = await fetch(`${props.serverURL}/patients`);
     const data = await result.json();
     return data;
   }
@@ -68,6 +68,7 @@ export default function PatientsList() {
           </Card>
         </Col>
         <Modal
+          {...props}
           name={props.name}
           info={{
             status: props.status,
@@ -83,13 +84,14 @@ export default function PatientsList() {
     );
   }
 
-  function CreateCardList() {
+  function CreateCardList(props) {
     return (
       <Container className="px-4 mb-5" style={{ maxWidth: "1320px" }}>
         <Row className="gx-3">
           {searchResults !== undefined
             ? searchResults.map((patient) => (
                 <CreateCard
+                  {...props}
                   name={patient.firstname + " " + patient.lastname}
                   status={"In Progress"}
                   patientID={patient.patientid}
@@ -99,6 +101,7 @@ export default function PatientsList() {
               ))
             : patients.map((patient) => (
                 <CreateCard
+                  {...props}
                   name={patient.firstname + " " + patient.lastname}
                   status={"In Progress"}
                   patientID={patient.patientid}
@@ -152,7 +155,7 @@ export default function PatientsList() {
             setUpdateToggle={setUpdateToggle}
           />
         </Nav>
-        {patients != null && <CreateCardList />}
+        {patients != null && <CreateCardList {...props} />}
       </Container>
     </>
   );

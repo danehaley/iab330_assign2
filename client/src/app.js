@@ -10,51 +10,26 @@ import Maintenance from "./routes/maintenance";
 import { Component } from "react";
 
 let baseURL;
-if(process.env.NODE_ENV === 'development'){
-  baseURL = 'http://localhost';
-
-}else
-{
-  baseURL = 'http://ec2-3-227-215-23.compute-1.amazonaws.com'; 
+if (process.env.NODE_ENV === "development") {
+  baseURL = "http://localhost:3001";
+} else {
+  baseURL = "http://ec2-3-227-215-23.compute-1.amazonaws.com:3001";
 }
-
-api_url_location ='';
-
-class App extends Component{
-
-  constructor(props){
-    super(props);
-    this.state = {apiResponse:""};
-  }
-
-  callLocationsAPI(){
-    api_url_location = baseURL+':3001/apidata';
-    fetch(api_url_location)
-      .then((response) => response.json())
-      .then((data) => console.log('api data', data));
-  }
-
-  componentDidMount() {
-    this.callLocationsAPI();
-  }
-
+class App extends Component {
   render() {
-    return(
-      <h1>Application running in <b>{process.env.NODE_ENV}</b> mode.</h1>
-    )
+    return (
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Maintenance serverURL={baseURL} />} />
+          <Route
+            path="/patients"
+            element={<PatientList serverURL={baseURL} />}
+          />
+        </Routes>
+      </BrowserRouter>
+    );
   }
-}
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Maintenance />} />
-        <Route path="/patients" element={<PatientList />} />
-      </Routes>
-    </BrowserRouter>
-  );
 }
 
 export default App;

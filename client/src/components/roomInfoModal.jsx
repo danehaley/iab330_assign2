@@ -26,9 +26,7 @@ export default function Modal(props) {
 
   function requestClean() {
     fetch(
-      `http://localhost:3001/room/${props.roomid}/${encodeURI(
-        "clean requested"
-      )}`,
+      `${props.serverURL}/room/${props.roomid}/${encodeURI("clean requested")}`,
       {
         method: "PATCH",
       }
@@ -37,14 +35,14 @@ export default function Modal(props) {
   }
 
   function submitClean() {
-    fetch(`http://localhost:3001/room/${props.roomid}/${encodeURI("clean")}`, {
+    fetch(`${props.serverURL}/room/${props.roomid}/${encodeURI("clean")}`, {
       method: "PATCH",
     });
     props.setUpdateToggle(!props.updateToggle);
   }
 
   function cancelCleanRequest() {
-    fetch(`http://localhost:3001/room/${props.roomid}/${encodeURI("clean")}`, {
+    fetch(`${props.serverURL}/room/${props.roomid}/${encodeURI("clean")}`, {
       method: "PATCH",
     });
     props.setUpdateToggle(!props.updateToggle);
@@ -52,7 +50,7 @@ export default function Modal(props) {
 
   useEffect(() => {
     if (open) {
-      fetch(`http://localhost:3001/room-history/${props.roomid}`)
+      fetch(`${props.serverURL}/room-history/${props.roomid}`)
         .then((result) => {
           result = result.json();
           return result;

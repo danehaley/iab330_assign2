@@ -6,7 +6,7 @@ export default function Modal(props) {
   const [patientRooms, setPatientRoom] = useState({ roomid: "" });
   async function getData() {
     const result = await fetch(
-      `http://localhost:3001/patient-location/${props.info.patientID}`
+      `${props.serverURL}/patient-location/${props.info.patientID}`
     );
     const data = await result.json();
     return data;

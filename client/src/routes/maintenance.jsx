@@ -14,7 +14,7 @@ import Refresh from "../components/refresh";
 import Modal from "../components/roomInfoModal";
 import Availability from "../components/availability";
 
-export default function Maintenance() {
+export default function Maintenance(props) {
   const [rooms, setRooms] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [updateToggle, setUpdateToggle] = useState(false);
@@ -31,7 +31,7 @@ export default function Maintenance() {
   }, [updateToggle]);
 
   async function getDataRooms() {
-    const result = await fetch("http://localhost:3001/rooms");
+    const result = await fetch(`${props.serverURL}/rooms`);
     const data = await result.json();
     return data;
   }
@@ -75,6 +75,7 @@ export default function Maintenance() {
         </Col>
         <Modal
           {...props}
+          serverURL={props.serverURL}
           updateToggle={updateToggle}
           setUpdateToggle={setUpdateToggle}
           show={show}
@@ -84,13 +85,13 @@ export default function Maintenance() {
     );
   }
 
-  function CreateCardList() {
+  function CreateCardList(props) {
     return (
       <Container className="px-4 mb-5" style={{ maxWidth: "1320px" }}>
         <Row className="gx-3">
           {searchResults !== undefined
-            ? searchResults.map((room) => <CreateCard {...room} />)
-            : rooms.map((room) => <CreateCard {...room} />)}
+            ? searchResults.map((room) => <CreateCard {...room} {...props} />)
+            : rooms.map((room) => <CreateCard {...room} {...props} />)}
         </Row>
       </Container>
     );
@@ -127,7 +128,7 @@ export default function Maintenance() {
             setUpdateToggle={setUpdateToggle}
           />
         </Nav>
-        {rooms != null && <CreateCardList />}
+        {rooms != null && <CreateCardList {...props} />}
       </Container>
     </>
   );
