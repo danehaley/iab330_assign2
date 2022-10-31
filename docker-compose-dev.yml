@@ -28,7 +28,7 @@ services:
     volumes:
       - ./client/src:/app/src
       - "/app/node_modules"
-    enviroment:
+    environment:
       - NODE_ENV=development
     stdin_open: true
     tty: true
