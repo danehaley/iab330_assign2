@@ -4,14 +4,14 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
-    container_name: api_prod
-    hostname: api_prod
+    container_name: server
+    hostname: server
     restart: always
     ports:
       - "3001:3001"
     volumes:
-      - "./server:/app"
-      - "/app/node_modules"
+      - './server:/app'
+      - '/app/node_modules'
     networks:
       - iab330_Harry
   client:
@@ -25,10 +25,9 @@ services:
       - "8080:8080"
     volumes:
       - ./client/src:/app/src
-      - "/app/node_modules"
+      - '/app/node_modules'
     enviroment:
       - NODE_ENV=production
-      - REACT_APP_NOT_SECRET_CODE=GROUP_3PROD
     stdin_open: true
     tty: true
     networks:
