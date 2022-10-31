@@ -2,20 +2,26 @@ import { BsSearch, BsXLg } from "react-icons/bs";
 import Fade from "react-bootstrap/esm/Fade";
 import { useState } from "react";
 
-export default function Search() {
+export default function Search(props) {
   const [open, setOpen] = useState(false);
+  const handleSubmit = (e) => e.preventDefault();
+  const handleSearchChange = (e) => {
+    if (!e.target.value) return props.setSearchResults(props.rooms);
+    const resArr = props.data.filter((datae) => props.filter(datae, e));
+    props.setSearchResults(resArr);
+  };
 
   return (
     <div className="d-flex">
       <Fade in={open} dimension="width">
-        <div>
+        <form onSubmit={handleSubmit}>
           <input
             className="form-control me-2 "
-            type="search"
-            onChange={null}
+            type="text"
+            onChange={handleSearchChange}
             placeholder="Search..."
           />
-        </div>
+        </form>
       </Fade>
       <SearchToggle state={open} setState={setOpen} />
     </div>

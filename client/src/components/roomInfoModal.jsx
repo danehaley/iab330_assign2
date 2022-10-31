@@ -36,7 +36,14 @@ export default function Modal(props) {
     props.setUpdateToggle(!props.updateToggle);
   }
 
-  function cancelClean() {
+  function submitClean() {
+    fetch(`http://localhost:3001/room/${props.roomid}/${encodeURI("clean")}`, {
+      method: "PATCH",
+    });
+    props.setUpdateToggle(!props.updateToggle);
+  }
+
+  function cancelCleanRequest() {
     fetch(`http://localhost:3001/room/${props.roomid}/${encodeURI("clean")}`, {
       method: "PATCH",
     });
@@ -150,15 +157,17 @@ export default function Modal(props) {
             }
             className="w-100"
             onClick={
-              props.status === "clean requested" ? cancelClean : requestClean
+              props.status === "clean requested"
+                ? cancelCleanRequest
+                : requestClean
             }
           >
             {props.status === "clean requested"
               ? "Cancel Clean"
               : "Request Clean"}
           </Button>
-          <Button variant={"primary"} className="w-100" onClick={null}>
-            Clean
+          <Button variant={"primary"} className="w-100" onClick={submitClean}>
+            Submit Clean
           </Button>
         </BootstrapModal.Footer>
       </BootstrapModal>

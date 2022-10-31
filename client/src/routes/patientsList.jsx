@@ -19,6 +19,8 @@ function getPatient(id) {}
 
 export default function PatientsList() {
   const [patients, setPatients] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [updateToggle, setUpdateToggle] = useState(false);
 
   async function getData() {
     const result = await fetch("http://localhost:3001/patients");
@@ -84,24 +86,48 @@ export default function PatientsList() {
     return (
       <Container className="px-4 mb-5" style={{ maxWidth: "1320px" }}>
         <Row className="gx-3">
-          {patients.map((patient) => (
-            <CreateCard
-              name={patient.firstname + " " + patient.lastname}
-              status={"In Progress"}
-              patientID={patient.patientid}
-              age={patient.age}
-              gender={patient.gender}
-            />
-          ))}
+          {searchResults !== undefined
+            ? searchResults.map((patient) => (
+                <CreateCard
+                  name={patient.firstname + " " + patient.lastname}
+                  status={"In Progress"}
+                  patientID={patient.patientid}
+                  age={patient.age}
+                  gender={patient.gender}
+                />
+              ))
+            : patients.map((patient) => (
+                <CreateCard
+                  name={patient.firstname + " " + patient.lastname}
+                  status={"In Progress"}
+                  patientID={patient.patientid}
+                  age={patient.age}
+                  gender={patient.gender}
+                />
+              ))}
         </Row>
       </Container>
     );
   }
   useEffect(() => {
-    getData().then((data) => {
-      setPatients(data);
-    });
-  }, []);
+    getData()
+      .then((data) => {
+        setPatients(data);
+        return data;
+      })
+      .then((data) => {
+        setSearchResults(data);
+      });
+  }, [updateToggle]);
+
+  const searchFilter = (patient, event) => {
+    return (
+      console.log(patient) ||
+      patient.firstname.toLowerCase().includes(event.target.value) ||
+      patient.lastname.toLowerCase().includes(event.target.value) ||
+      patient.patientid === parseInt(event.target.value)
+    );
+  };
 
   return (
     <>
@@ -111,7 +137,11 @@ export default function PatientsList() {
             <h3 className="fw-bold">Patients</h3>
           </Nav.Item>
           <Nav.Link as="button" className="icon-button py-0 px-2 ms-auto">
-            <Search />
+            <Search
+              data={patients}
+              filter={searchFilter}
+              setSearchResults={setSearchResults}
+            />
           </Nav.Link>
           <Nav.Link as="button" className="icon-button py-0 ps-2 pe-0">
             {/*<Filter />*/}

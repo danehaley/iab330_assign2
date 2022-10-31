@@ -15,12 +15,18 @@ import Availability from "../components/availability";
 
 export default function Maintenance() {
   const [rooms, setRooms] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [updateToggle, setUpdateToggle] = useState(false);
 
   useEffect(() => {
-    getDataRooms().then((data) => {
-      setRooms(data);
-    });
+    getDataRooms()
+      .then((data) => {
+        setRooms(data);
+        return data;
+      })
+      .then((data) => {
+        setSearchResults(data);
+      });
   }, [updateToggle]);
 
   async function getDataRooms() {
@@ -81,13 +87,22 @@ export default function Maintenance() {
     return (
       <Container className="px-4 mb-5" style={{ maxWidth: "1320px" }}>
         <Row className="gx-3">
-          {rooms.map((room) => (
-            <CreateCard {...room} />
-          ))}
+          {searchResults !== undefined
+            ? searchResults.map((room) => <CreateCard {...room} />)
+            : rooms.map((room) => <CreateCard {...room} />)}
         </Row>
       </Container>
     );
   }
+
+  const searchFilter = (room, event) => {
+    return (
+      `${capitalize(room.roomtype)} Room ${room.roomid}`
+        .toLowerCase()
+        .includes(event.target.value) ||
+      room.roomid === parseInt(event.target.value)
+    );
+  };
 
   return (
     <>
@@ -97,7 +112,11 @@ export default function Maintenance() {
             <h3 className="fw-bold">Rooms</h3>
           </Nav.Item>
           <Nav.Link as="button" className="icon-button py-0 px-2 ms-auto">
-            <Search />
+            <Search
+              data={rooms}
+              filter={searchFilter}
+              setSearchResults={setSearchResults}
+            />
           </Nav.Link>
           <Nav.Link as="button" className="icon-button py-0 ps-2 pe-0">
             {/*<Filter />*/}
