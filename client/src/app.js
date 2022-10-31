@@ -19,14 +19,8 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route
-          path="/"
-          element={<Maintenance baseURL={"http://localhost"} />}
-        />
-        <Route
-          path="/patients"
-          element={<PatientList baseURL={"http://localhost"} />}
-        />
+        <Route path="/" element={<Maintenance baseURL={baseURL} />} />
+        <Route path="/patients" element={<PatientList baseURL={baseURL} />} />
       </Routes>
     </BrowserRouter>
   );
