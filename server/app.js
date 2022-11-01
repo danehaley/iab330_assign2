@@ -12,6 +12,9 @@ const patients = require("./routes/patients");
 const patient = require("./routes/patient");
 const patientLocation = require("./routes/patient-location");
 
+// Script
+const crons = require("./jobs/updateData.js");
+
 // Connect to database
 client.connect();
 
@@ -20,6 +23,8 @@ app.use(
     origin: "*",
   })
 );
+
+crons.script();
 
 // Use routes from the following imports
 app.use("/", patients, patient, patientLocation, rooms, room, roomHistory);
