@@ -37,15 +37,6 @@ export default function Maintenance(props) {
     return data;
   }
 
-  async function handleHighTraffic(room) {
-    await fetch(
-      `${props.baseURL}:3000/rooms/${room.roomid}/${encodeURI("dirty")}`,
-      {
-        method: "PATCH",
-      }
-    );
-  }
-
   function CreateCard(props) {
     const [show, setShow] = useState(false);
 

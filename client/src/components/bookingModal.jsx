@@ -19,6 +19,19 @@ import Availability from "./availability";
 export default function Modal(props) {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState({ history: 1 });
+  const [graphY, setGraphY] = useState(
+    "numberOfPeople.sinceCleanDemos.patients"
+  );
+  const [graphYLabel, setGraphYLabel] = useState("Patients");
+
+  function handleChange(event) {
+    setGraphY(event.target.value);
+    const label = capitalize(
+      event.target.value.slice(event.target.value.lastIndexOf(".") + 1)
+    );
+    setGraphYLabel(label);
+    console.log(graphY);
+  }
 
   function handleShow() {
     setOpen(!open);
@@ -35,14 +48,6 @@ export default function Modal(props) {
       `${props.baseURL}:3000/room/${props.roomid}/${encodeURI(
         "clean requested"
       )}`
-    ).then(() => {
-      props.setUpdateToggle(!props.updateToggle);
-    });
-  }
-
-  function setClean() {
-    postData(
-      `${props.baseURL}:3000/room/${props.roomid}/${encodeURI("cleaning")}`
     ).then(() => {
       props.setUpdateToggle(!props.updateToggle);
     });
@@ -102,6 +107,74 @@ export default function Modal(props) {
             <strong>{`${pluralizer(props.doctor, "Doctor")}`}</strong>
             <strong>{`${props.totaloccupants} Total`}</strong>
           </div>
+
+          {data && (
+            <>
+              <div className="d-flex flex-row gap-2">
+                <h1 className="fw-bold fs-3 mb-3">History</h1>
+                <form>
+                  <select name="type" onChange={handleChange}>
+                    <option
+                      selected
+                      value="numberOfPeople.sinceCleanDemos.patients"
+                    >
+                      Patient
+                    </option>
+                    <option value="numberOfPeople.sinceCleanDemos.doctors">
+                      Doctors
+                    </option>
+                    <option value="numberOfPeople.sinceCleanDemos.nurses">
+                      Nurses
+                    </option>
+                    <option value="numberOfPeople.current">Total</option>
+                  </select>
+                </form>
+              </div>
+              <div style={{ width: "95%", height: "50vh", maxHeight: "400px" }}>
+                <ResponsiveContainer height="100%" width={"100%"}>
+                  <LineChart data={data.history}>
+                    <YAxis
+                      interval={1}
+                      padding={{ top: 10 }}
+                      tickCount={5}
+                      allowDecimals={false}
+                      dx={2}
+                      width={60}
+                    >
+                      <Label
+                        value={graphYLabel}
+                        dx={-5}
+                        angle={-90}
+                        offset={0}
+                      />
+                    </YAxis>
+                    <XAxis
+                      dataKey="time"
+                      tickFormatter={(tick) => formatXAxis(tick)}
+                      interval={30}
+                      height={40}
+                      padding={{ right: 30 }}
+                      width={40}
+                    >
+                      <Label
+                        value="Time"
+                        dy={2}
+                        offset={0}
+                        position="insideBottom"
+                      />
+                    </XAxis>
+                    <Line
+                      dataKey={graphY}
+                      barSize={20}
+                      fill="#8884d8"
+                      dot={false}
+                      isAnimationActive={false}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </>
+          )}
         </BootstrapModal.Body>
         <BootstrapModal.Footer>
           <Button
@@ -118,9 +191,6 @@ export default function Modal(props) {
             {props.status === "clean requested"
               ? "Cancel Clean"
               : "Request Clean"}
-          </Button>
-          <Button variant={"primary"} className="w-100" onClick={setClean}>
-            Set Cleaning
           </Button>
         </BootstrapModal.Footer>
       </BootstrapModal>

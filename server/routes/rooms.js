@@ -11,6 +11,12 @@ router.get("/rooms", async (req, res) => {
   WHERE traffic >= 25 AND status = 'clean'
   `;
 
+  const queryCheck2 = `
+  UPDATE roomoccupancy2
+  SET status = 'in use'
+  WHERE patient >= 25 AND status = 'clean'
+  `;
+
   const query = `
   SELECT roomoccupancy2.roomid, roomoccupancy2.status, roomoccupancy2.patient, roomoccupancy2.nurse, roomoccupancy2.doctor, roomoccupancy2.traffic, roomoccupancy2.totalOccupants, rooms.roomType
   FROM roomoccupancy2
@@ -18,6 +24,8 @@ router.get("/rooms", async (req, res) => {
   `;
 
   client.query(queryCheck);
+
+  client.query(queryCheck2);
 
   client.query(query).then((results) => {
     res.status(200).json(results.rows);
