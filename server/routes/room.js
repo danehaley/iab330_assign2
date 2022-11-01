@@ -6,11 +6,15 @@ const client = require("../data/client");
 
 // Update status of room
 router.patch("/room/:id/:update", async (req, res) => {
-  const update = decodeURI(req.params.update);
+  let update = decodeURI(req.params.update);
   let cleanCheck = "";
 
   if (update === "clean") {
     cleanCheck = ", traffic = 0";
+  }
+
+  if (update === "clean cancel") {
+    update = "clean";
   }
 
   const query = `

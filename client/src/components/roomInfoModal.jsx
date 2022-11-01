@@ -50,15 +50,10 @@ export default function Modal(props) {
 
   function cancelCleanRequest() {
     postData(
-      `${props.baseURL}:3000/room/${props.roomid}/${encodeURI("clean")}`
+      `${props.baseURL}:3000/room/${props.roomid}/${encodeURI("clean cancel")}`
     ).then(() => {
       props.setUpdateToggle(!props.updateToggle);
     });
-
-    fetch(`${props.baseURL}:3000/room/${props.roomid}/${encodeURI("clean")}`, {
-      method: "PATCH",
-    });
-    props.setUpdateToggle(!props.updateToggle);
   }
 
   useEffect(() => {

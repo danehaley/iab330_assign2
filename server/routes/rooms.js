@@ -8,7 +8,7 @@ router.get("/rooms", async (req, res) => {
   const queryCheck = `
   UPDATE roomoccupancy2
   SET status = 'dirty'
-  WHERE traffic >= 25
+  WHERE traffic >= 25 AND status = 'clean'
   `;
 
   const query = `
