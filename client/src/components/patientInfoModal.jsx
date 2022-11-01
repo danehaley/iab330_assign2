@@ -10,6 +10,7 @@ export default function Modal(props) {
       `${props.baseURL}:3000/patient-location/${props.info.patientID}`
     );
     const data = await result.json();
+    console.log(data);
     return data;
   }
   useEffect(() => {
@@ -20,10 +21,17 @@ export default function Modal(props) {
     <BootstrapModal show={props.show} onHide={props.handleClose}>
       <BootstrapModal.Header closeButton>
         <BootstrapModal.Title className="fw-bold fs-3">
-          Patient Information
+          Patient
         </BootstrapModal.Title>
       </BootstrapModal.Header>
       <BootstrapModal.Body>
+        <BootstrapModal.Title className="fw-bold fs-5">
+          Information
+        </BootstrapModal.Title>
+        <div className="me-4">
+          <strong className="fw-bold">Patient ID:</strong>{" "}
+          {props.info.patientID}
+        </div>
         <div className="me-4">
           <strong className="fw-bold">Patient Name:</strong> {props.name}
         </div>
@@ -36,19 +44,34 @@ export default function Modal(props) {
             {capitalize(props.info.gender)}
           </div>
         </div>
+        <BootstrapModal.Title className="fw-bold fs-5 mt-3">
+          Location
+        </BootstrapModal.Title>
         <div className="d-flex">
+          <div className="me-3">
+            <strong className="fw-bold">Room ID:</strong> {patientRooms.roomid}
+          </div>
           <div className="me-4">
             <strong className="fw-bold">Room:</strong>{" "}
             {capitalize(patientRooms.roomtype) + " " + patientRooms.roomid}
           </div>
         </div>
         <div className="d-flex">
-          <div className="me-4">
-            <strong className="fw-bold">Patient ID:</strong>{" "}
-            {props.info.patientID}
+          <div className="d-flex me-3">
+            <strong className="fw-bold">Bed ID: </strong>{" "}
+            <p className={`ms-1`}>
+              {capitalize(String(patientRooms.bednumber))}
+            </p>
           </div>
-          <div className="me-4">
-            <strong className="fw-bold">Room ID:</strong> {patientRooms.roomid}
+          <div className="d-flex">
+            <strong className="fw-bold">Bed Occupied: </strong>{" "}
+            <p
+              className={`ms-1 ${
+                patientRooms.bedoccupied ? "text-success" : "text-danger"
+              }`}
+            >
+              {capitalize(String(patientRooms.bedoccupied))}
+            </p>
           </div>
         </div>
       </BootstrapModal.Body>
