@@ -5,18 +5,21 @@ const fetch = (...args) =>
 let length;
 
 const lengthFun = async () => {
+  console.log("Script Running");
   const result = await fetch(`http://localhost:3000/rooms`);
   const data = await result.json();
   length = await data.length;
 };
 
-lengthFun();
+setTimeout(() => {
+  lengthFun();
+}, 10000);
 
 // Every minute
 cron.schedule("* * * * *", async function () {
   for (let i = 1; i <= length; i++) {
     console.log("UPDATED HISTORY OF ROOM ID: " + i);
-    await fetch(`http://localhost:3000/room/${i}/script`);
+    await fetch(`http://localhost:3000/room/${i}`);
   }
 });
 

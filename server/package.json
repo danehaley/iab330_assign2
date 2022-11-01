@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start:script": "node ./jobs/updateData.js",
-    "start": "node ./bin/www"
+    "script": "node ./jobs/updateData.js",
+    "server": "node ./bin/www",
+    "start": "concurrently 'npm run server' 'npm run script'"
   },
   "dependencies": {
     "axios": "^1.1.3",
