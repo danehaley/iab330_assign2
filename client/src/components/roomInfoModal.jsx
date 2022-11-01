@@ -40,6 +40,14 @@ export default function Modal(props) {
     });
   }
 
+  function cancelCleanRequest() {
+    postData(
+      `${props.baseURL}:3000/room/${props.roomid}/${encodeURI("clean cancel")}`
+    ).then(() => {
+      props.setUpdateToggle(!props.updateToggle);
+    });
+  }
+
   function submitClean() {
     postData(
       `${props.baseURL}:3000/room/${props.roomid}/${encodeURI("clean")}`
@@ -48,9 +56,9 @@ export default function Modal(props) {
     });
   }
 
-  function cancelCleanRequest() {
+  function setCleaning() {
     postData(
-      `${props.baseURL}:3000/room/${props.roomid}/${encodeURI("clean cancel")}`
+      `${props.baseURL}:3000/room/${props.roomid}/${encodeURI("cleaning")}`
     ).then(() => {
       props.setUpdateToggle(!props.updateToggle);
     });
@@ -107,9 +115,9 @@ export default function Modal(props) {
             <strong>{`${pluralizer(props.doctor, "Doctor")}`}</strong>
             <strong>{`${pluralizer(props.patient, "Patient", true)}`}</strong>
           </div>
-          <div className="d-flex flex-column gap-2 fs-6 mt-3">
+          {/* <div className="d-flex flex-column gap-2 fs-6 mt-3">
             <p className="text-secondary">Last Cleaned: hi</p>
-          </div>
+          </div> */}
           {data && (
             <>
               <BootstrapModal.Title className="fw-bold fs-3 mb-3">
@@ -172,8 +180,12 @@ export default function Modal(props) {
               ? "Cancel Clean"
               : "Request Clean"}
           </Button>
-          <Button variant={"primary"} className="w-100" onClick={submitClean}>
-            Submit Clean
+          <Button
+            variant={"primary"}
+            className="w-100"
+            onClick={props.status === "cleaning" ? submitClean : setCleaning}
+          >
+            {props.status === "cleaning" ? "Finish Clean" : "Set Cleaning"}
           </Button>
         </BootstrapModal.Footer>
       </BootstrapModal>
