@@ -27,6 +27,7 @@ export default function Maintenance(props) {
       })
       .then((data) => {
         setSearchResults(data);
+        return data;
       });
   }, [updateToggle]);
 
@@ -34,6 +35,15 @@ export default function Maintenance(props) {
     const result = await fetch(`${props.baseURL}:3000/rooms`);
     const data = await result.json();
     return data;
+  }
+
+  async function handleHighTraffic(room) {
+    await fetch(
+      `${props.baseURL}:3000/rooms/${room.roomid}/${encodeURI("dirty")}`,
+      {
+        method: "PATCH",
+      }
+    );
   }
 
   function CreateCard(props) {
@@ -90,7 +100,9 @@ export default function Maintenance(props) {
         <Row className="gx-3">
           {searchResults !== undefined
             ? searchResults.map((room) => <CreateCard {...props} {...room} />)
-            : rooms.map((room) => <CreateCard {...props} {...room} />)}
+            : rooms.map((room) => {
+                return <CreateCard {...props} {...room} />;
+              })}
         </Row>
       </Container>
     );

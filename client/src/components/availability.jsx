@@ -24,11 +24,11 @@ export default function Availability(
         </>
       );
     }
-    case "cleaning": {
+    case "dirty": {
       return (
         <>
           <BsCone color={"Orange"} size={21} className="mx-0 my-auto" />
-          <p className={"ms-2 my-auto lh-1 " + fontSize}>Cleaning</p>
+          <p className={"ms-2 my-auto lh-1 " + fontSize}>Dirty</p>
         </>
       );
     }
