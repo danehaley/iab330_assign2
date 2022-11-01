@@ -19,7 +19,7 @@ setTimeout(() => {
 cron.schedule("* * * * *", async function () {
   for (let i = 1; i <= length; i++) {
     console.log("UPDATED HISTORY OF ROOM ID: " + i);
-    await fetch(`http://localhost:3000/room/${i}/script`);
+    await fetch(`http://localhost:3000/room/${i}`);
   }
 });
 
