@@ -66,3 +66,12 @@
 .recharts-responsive-container {
   height: max-content;
 }
+
+.history-header form {
+  height: fit-content;
+  margin: auto 0;
+}
+
+.history-header h1 {
+  margin: auto 0;
+}

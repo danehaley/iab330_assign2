@@ -47,8 +47,8 @@ router.get("/room/:id", async (req, res) => {
       time: formatDate(new Date()),
       status: room.status,
       numberOfPeople: {
-        current: room.traffic,
-        sinceClean: room.totalOccupants,
+        current: room.totalOccupants,
+        sinceClean: room.traffic,
         sinceCleanDemos: {
           patients: room.patient,
           nurses: room.nurse,

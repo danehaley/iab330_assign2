@@ -134,7 +134,12 @@ export default function Modal(props) {
                       dx={2}
                       width={60}
                     >
-                      <Label value="People" dx={-5} angle={-90} offset={0} />
+                      <Label
+                        value="People Since Clean"
+                        dx={-5}
+                        angle={-90}
+                        offset={0}
+                      />
                     </YAxis>
                     <XAxis
                       dataKey="time"
@@ -152,7 +157,7 @@ export default function Modal(props) {
                       />
                     </XAxis>
                     <Line
-                      dataKey="numberOfPeople.current"
+                      dataKey="numberOfPeople.sinceClean"
                       barSize={20}
                       fill="#8884d8"
                       dot={false}

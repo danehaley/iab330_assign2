@@ -29,8 +29,11 @@ export default function Modal(props) {
     const label = capitalize(
       event.target.value.slice(event.target.value.lastIndexOf(".") + 1)
     );
-    setGraphYLabel(label);
-    console.log(graphY);
+    if (label === "Current") {
+      setGraphYLabel("People");
+    } else {
+      setGraphYLabel(label);
+    }
   }
 
   function handleShow() {
@@ -110,8 +113,8 @@ export default function Modal(props) {
 
           {data && (
             <>
-              <div className="d-flex flex-row gap-2">
-                <h1 className="fw-bold fs-3 mb-3">History</h1>
+              <div className="d-flex flex-column gap-2 history-header my-3">
+                <h1 className="fw-bold fs-3">History</h1>
                 <form>
                   <select name="type" onChange={handleChange}>
                     <option
