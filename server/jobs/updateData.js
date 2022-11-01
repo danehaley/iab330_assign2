@@ -5,12 +5,15 @@ const fetch = (...args) =>
 let length;
 
 const lengthFun = async () => {
+  console.log("Script Running");
   const result = await fetch(`http://localhost:3000/rooms`);
   const data = await result.json();
   length = await data.length;
 };
 
-lengthFun();
+setTimeout(() => {
+  lengthFun();
+}, 10000);
 
 // Every minute
 cron.schedule("* * * * *", async function () {
