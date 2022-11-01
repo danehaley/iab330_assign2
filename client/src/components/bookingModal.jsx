@@ -129,7 +129,6 @@ export default function Modal(props) {
                     <option value="numberOfPeople.sinceCleanDemos.nurses">
                       Nurses
                     </option>
-                    <option value="numberOfPeople.current">Total</option>
                   </select>
                 </form>
               </div>
