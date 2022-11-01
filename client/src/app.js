@@ -6,6 +6,7 @@ import Header from "./components/header";
 
 // Routes
 import PatientList from "./routes/patientsList";
+import Bookings from "./routes/bookings";
 import Maintenance from "./routes/maintenance";
 
 let baseURL = "http://ec2-3-227-215-23.compute-1.amazonaws.com";
@@ -19,7 +20,11 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Maintenance baseURL={baseURL} />} />
+        <Route
+          path="/maintenance"
+          element={<Maintenance baseURL={baseURL} />}
+        />
+        <Route path="/" element={<Bookings baseURL={baseURL} />} />
         <Route path="/patients" element={<PatientList baseURL={baseURL} />} />
       </Routes>
     </BrowserRouter>

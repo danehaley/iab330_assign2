@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import BootstrapModal from "react-bootstrap/Modal";
 import { useState, useEffect } from "react";
+import capitalize from "../helpers/capitalize";
 
 export default function Modal(props) {
   const [patientRooms, setPatientRoom] = useState({ roomid: "" });
@@ -12,7 +13,7 @@ export default function Modal(props) {
     return data;
   }
   useEffect(() => {
-    getData().then((data) => setPatientRoom({ roomid: data[0].roomid }));
+    getData().then((data) => setPatientRoom(data[0]));
   }, [props.roomid]);
 
   return (
@@ -31,7 +32,14 @@ export default function Modal(props) {
             <strong className="fw-bold">Age:</strong> {props.info.age}
           </div>
           <div className="me-4">
-            <strong className="fw-bold">Gender:</strong> {props.info.gender}
+            <strong className="fw-bold">Gender:</strong>{" "}
+            {capitalize(props.info.gender)}
+          </div>
+        </div>
+        <div className="d-flex">
+          <div className="me-4">
+            <strong className="fw-bold">Room:</strong>{" "}
+            {capitalize(patientRooms.roomtype) + " " + patientRooms.roomid}
           </div>
         </div>
         <div className="d-flex">

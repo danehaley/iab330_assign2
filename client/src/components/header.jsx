@@ -18,17 +18,17 @@ export default function Header() {
           <Nav className="me-auto">
             <Nav.Item>
               <Link className="nav-link" to="/">
+                Overview
+              </Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Link className="nav-link" to="/maintenance">
                 Maintenance
               </Link>
             </Nav.Item>
             <Nav.Item>
               <Link className="nav-link" to="/patients">
                 Patients
-              </Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Link className="nav-link" to="/bookings">
-                Bookings
               </Link>
             </Nav.Item>
           </Nav>

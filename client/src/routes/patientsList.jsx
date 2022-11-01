@@ -126,7 +126,6 @@ export default function PatientsList(props) {
 
   const searchFilter = (patient, event) => {
     return (
-      console.log(patient) ||
       patient.firstname.toLowerCase().includes(event.target.value) ||
       patient.lastname.toLowerCase().includes(event.target.value) ||
       patient.patientid === parseInt(event.target.value)

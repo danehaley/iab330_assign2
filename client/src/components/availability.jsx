@@ -11,6 +11,9 @@ export default function Availability(
   fontSize = "fs-5",
   page = "default"
 ) {
+  if (page === "Bookings" && state === "dirty") {
+    state = "clean";
+  }
   switch (state) {
     case "clean": {
       state = "Available";
@@ -49,6 +52,14 @@ export default function Availability(
         <>
           <BsDashCircle color={"#DC3545"} size={21} className="mx-0 my-auto" />
           <p className={"ms-2 my-auto lh-1 " + fontSize}>In Use</p>
+        </>
+      );
+    }
+    case "cleaning": {
+      return (
+        <>
+          <BsDashCircle color={"#DC3545"} size={21} className="mx-0 my-auto" />
+          <p className={"ms-2 my-auto lh-1 " + fontSize}>Cleaning</p>
         </>
       );
     }

@@ -11,10 +11,10 @@ import capitalize from "../helpers/capitalize";
 import Search from "../components/search";
 //import Filter from "../components/filter";
 import Refresh from "../components/refresh";
-import Modal from "../components/roomInfoModal";
+import Modal from "../components/bookingModal";
 import Availability from "../components/availability";
 
-export default function Maintenance(props) {
+export default function Bookings(props) {
   const [rooms, setRooms] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [updateToggle, setUpdateToggle] = useState(false);
@@ -37,15 +37,6 @@ export default function Maintenance(props) {
     return data;
   }
 
-  async function handleHighTraffic(room) {
-    await fetch(
-      `${props.baseURL}:3000/rooms/${room.roomid}/${encodeURI("dirty")}`,
-      {
-        method: "PATCH",
-      }
-    );
-  }
-
   function CreateCard(props) {
     const [show, setShow] = useState(false);
 
@@ -66,18 +57,13 @@ export default function Maintenance(props) {
                 {`${capitalize(props.roomtype)} Room ${props.roomid}`}
               </Card.Title>
               <Card.Text className="fs-4 d-flex mb-4">
-                {Availability(props.status, "fs-5", "Maintenance")}
+                {Availability(props.status, "fs-5", "Bookings")}
               </Card.Text>
               <Card.Text className="d-flex">
                 <div className="me-4">
-                  {props.totaloccupants}
+                  {props.patient} / 25
                   <BsPeopleFill size={28} className="ms-2 me-1" />{" "}
-                  <strong className="fw-bold">Currently</strong>
-                </div>
-                <div className="me-4">
-                  {props.traffic}
-                  <BsPeopleFill size={28} className="ms-2 me-1" />{" "}
-                  <strong className="fw-bold">Since Clean</strong>
+                  <strong className="fw-bold">Patients</strong>
                 </div>
               </Card.Text>
             </Card.Body>
@@ -122,7 +108,7 @@ export default function Maintenance(props) {
       <Container className="maintenance px-2">
         <Nav className="maintenance-nav nav px-4 pt-5 pb-3">
           <Nav.Item>
-            <h3 className="fw-bold">Maintenance</h3>
+            <h3 className="fw-bold">Overview</h3>
           </Nav.Item>
           <Nav.Link as="button" className="icon-button py-0 px-2 ms-auto">
             <Search
